@@ -46,7 +46,7 @@ export function CatalogPage() {
     <div>
       {/* Header */}
       <header
-        className="flex justify-between items-center px-[22px] pt-[10px] pb-[18px]"
+        className="flex justify-between items-center px-[22px] sm:px-8 md:px-12 pt-[10px] pb-[18px]"
         style={{ borderBottom: '1px solid var(--color-line-2)' }}
       >
         <Wordmark className="h-8" />
@@ -60,7 +60,7 @@ export function CatalogPage() {
       </header>
 
       {/* Hero */}
-      <section className="px-[22px] pt-[32px] pb-[24px] relative">
+      <section className="px-[22px] sm:px-8 md:px-12 pt-[32px] pb-[24px] relative">
         <div className="font-mono text-[9px] tracking-[0.32em] uppercase mb-[14px]" style={{ color: 'var(--color-gold)' }}>
           Quixadá – CE
         </div>
@@ -114,14 +114,13 @@ export function CatalogPage() {
       {!loadingCuts && popularCuts.length > 0 && (
         <section className="py-[20px] pb-[28px]">
           <SectionHeader kicker="Mais procurados" title="Em destaque" />
-          <div className="flex overflow-x-auto gap-[12px] px-[22px] hide-scroll" style={{ scrollSnapType: 'x mandatory' }}>
+          <div className="flex overflow-x-auto gap-[12px] px-[22px] sm:px-8 md:px-12 hide-scroll" style={{ scrollSnapType: 'x mandatory' }}>
             {popularCuts.map((cut) => (
               <button
                 key={cut.id}
                 onClick={() => setOpenCut(cut)}
-                className="flex-none text-left"
+                className="flex-none text-left w-[70%] sm:w-[45%] md:w-1/3"
                 style={{
-                  flexBasis: '70%',
                   scrollSnapAlign: 'start',
                   background: 'var(--color-ink-2)',
                   border: '1px solid var(--color-line)',
@@ -176,7 +175,7 @@ export function CatalogPage() {
 
         {/* Tag pills */}
         {!loadingTags && (
-          <div className="flex gap-2 overflow-x-auto px-[22px] pb-1 hide-scroll">
+          <div className="flex gap-2 overflow-x-auto px-[22px] sm:px-8 md:px-12 pb-1 hide-scroll">
             {allTags.map((t) => (
               <TagPill
                 key={t.id}
@@ -192,7 +191,7 @@ export function CatalogPage() {
         {/* Expanded filters */}
         {showFilters && (
           <div
-            className="mx-[22px] mt-[16px] p-[20px]"
+            className="mx-[22px] sm:mx-8 md:mx-12 mt-[16px] p-[20px]"
             style={{ border: '1px solid var(--color-line)', background: 'var(--color-ink-2)' }}
           >
             <div className="font-mono text-[9px] tracking-[0.22em] uppercase mb-[8px]" style={{ color: 'var(--color-gold)' }}>
@@ -222,7 +221,7 @@ export function CatalogPage() {
 
         {/* Grid */}
         <div
-          className="grid grid-cols-2 gap-px mt-[18px] mx-[22px]"
+          className="grid grid-cols-2 md:grid-cols-3 gap-px mt-[18px] mx-[22px] sm:mx-8 md:mx-12"
           style={{ background: 'var(--color-line-2)', border: '1px solid var(--color-line-2)' }}
         >
           {loadingCuts
@@ -291,7 +290,7 @@ function CutCard({ cut, onClick }: { cut: Haircut; onClick: () => void }) {
 function ShopFooter() {
   return (
     <section
-      className="mt-[30px] px-[22px] py-[32px]"
+      className="mt-[30px] px-[22px] sm:px-8 md:px-12 py-[32px]"
       style={{
         background: 'var(--color-ink-2)',
         borderTop: '1px solid var(--color-line)',

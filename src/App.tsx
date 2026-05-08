@@ -15,13 +15,9 @@ export default function App() {
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <div
+          className="w-full max-w-[440px] sm:max-w-2xl md:max-w-3xl mx-auto min-h-screen relative"
           style={{
-            width: '100%',
-            maxWidth: 440,
-            margin: '0 auto',
             background: 'var(--color-ink)',
-            minHeight: '100vh',
-            position: 'relative',
             boxShadow: '0 0 80px rgba(0,0,0,0.6)',
           }}
         >

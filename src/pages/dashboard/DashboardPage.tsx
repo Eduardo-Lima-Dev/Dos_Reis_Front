@@ -25,7 +25,7 @@ export function DashboardPage() {
     <div>
       {/* Header */}
       <header
-        className="flex justify-between items-center px-[22px] pt-[10px] pb-[18px]"
+        className="flex justify-between items-center px-[22px] sm:px-8 md:px-12 pt-[10px] pb-[18px]"
         style={{ borderBottom: '1px solid var(--color-line-2)' }}
       >
         <Wordmark className="h-7" />
@@ -39,7 +39,7 @@ export function DashboardPage() {
       </header>
 
       {/* User strip */}
-      <section className="px-[22px] pt-[26px] pb-[22px]">
+      <section className="px-[22px] sm:px-8 md:px-12 pt-[26px] pb-[22px]">
         <div className="font-mono text-[9px] tracking-[0.32em] uppercase mb-[8px]" style={{ color: 'var(--color-gold)' }}>
           Painel · Barbeiro
         </div>
@@ -61,7 +61,7 @@ export function DashboardPage() {
       </section>
 
       {/* Stats */}
-      <section className="px-[22px]">
+      <section className="px-[22px] sm:px-8 md:px-12">
         <div
           className="grid grid-cols-3"
           style={{ border: '1px solid var(--color-line)', background: 'var(--color-ink-2)' }}
@@ -88,7 +88,7 @@ export function DashboardPage() {
           }
         />
 
-        <div className="px-[22px] flex flex-col gap-[12px]">
+        <div className="px-[22px] sm:px-8 md:px-12 flex flex-col gap-[12px]">
           {isLoading
             ? Array.from({ length: 4 }).map((_, i) => (
                 <div key={i} className="h-[80px] rounded-none" style={{ background: 'var(--color-ink-2)', border: '1px solid var(--color-line-2)' }} />
@@ -126,7 +126,7 @@ export function DashboardPage() {
       </section>
 
       {/* Tip */}
-      <section className="px-[22px] pt-[32px] pb-[20px]">
+      <section className="px-[22px] sm:px-8 md:px-12 pt-[32px] pb-[20px]">
         <div
           className="p-[18px] flex gap-[14px] items-start"
           style={{ background: 'var(--color-ink-2)', border: '1px solid var(--color-line-2)' }}

@@ -23,7 +23,7 @@ export function ShopPage() {
   return (
     <div className="pb-[30px]">
       <header
-        className="flex justify-between items-center px-[22px] pt-[10px] pb-[18px]"
+        className="flex justify-between items-center px-[22px] sm:px-8 md:px-12 pt-[10px] pb-[18px]"
         style={{ borderBottom: '1px solid var(--color-line-2)' }}
       >
         <Wordmark className="h-7" />
@@ -32,7 +32,7 @@ export function ShopPage() {
         </div>
       </header>
 
-      <section className="px-[22px] pt-[30px]">
+      <section className="px-[22px] sm:px-8 md:px-12 pt-[30px]">
         <div className="font-mono text-[9px] tracking-[0.32em] uppercase mb-[8px]" style={{ color: 'var(--color-gold)' }}>
           Quixadá – CE
         </div>
@@ -53,7 +53,7 @@ export function ShopPage() {
         </p>
       </section>
 
-      <section className="px-[22px] pt-[26px]">
+      <section className="px-[22px] sm:px-8 md:px-12 pt-[26px]">
         <div
           className="p-[20px_18px]"
           style={{ background: 'var(--color-ink-2)', border: '1px solid var(--color-line)' }}
@@ -86,7 +86,7 @@ export function ShopPage() {
         </div>
       </section>
 
-      <section className="px-[22px] pt-[30px] flex flex-col gap-[10px]">
+      <section className="px-[22px] sm:px-8 md:px-12 pt-[30px] flex flex-col sm:flex-row gap-[10px]">
         <a
           href={`https://instagram.com/${SHOP.instagram.replace('@', '')}`}
           target="_blank" rel="noreferrer"

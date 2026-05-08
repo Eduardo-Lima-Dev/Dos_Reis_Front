@@ -96,7 +96,7 @@ export function CutFormPage() {
     <div className="min-h-screen flex flex-col">
       {/* Header */}
       <header
-        className="flex justify-between items-center px-[22px] pt-[10px] pb-[18px]"
+        className="flex justify-between items-center px-[22px] sm:px-8 md:px-12 pt-[10px] pb-[18px]"
         style={{ borderBottom: '1px solid var(--color-line-2)' }}
       >
         <Wordmark className="h-7" />
@@ -109,7 +109,7 @@ export function CutFormPage() {
         </button>
       </header>
 
-      <div className="px-[22px] pt-[26px]">
+      <div className="px-[22px] sm:px-8 md:px-12 pt-[26px]">
         <div className="font-mono text-[9px] tracking-[0.32em] uppercase mb-[8px]" style={{ color: 'var(--color-gold)' }}>
           {isEdit ? 'Editar corte' : 'Novo corte'}
         </div>
@@ -126,7 +126,7 @@ export function CutFormPage() {
         </h1>
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="px-[22px] pt-[28px] pb-[40px] flex flex-col gap-[20px] flex-1">
+      <form onSubmit={handleSubmit(onSubmit)} className="px-[22px] sm:px-8 md:px-12 pt-[28px] pb-[40px] flex flex-col gap-[20px] flex-1">
         <Field label="Nome do corte" registration={register('name')} error={errors.name?.message} />
 
         <div className="grid grid-cols-2 gap-4">

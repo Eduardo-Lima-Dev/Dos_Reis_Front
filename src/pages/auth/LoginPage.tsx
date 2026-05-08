@@ -27,6 +27,10 @@ export function LoginPage() {
   const mutation = useMutation({
     mutationFn: loginApi,
     onSuccess: (data) => {
+      if (!data?.access_token) {
+        toast.error('Erro do servidor: token não recebido.');
+        return;
+      }
       login(data.access_token);
       navigate('/admin');
     },
@@ -37,13 +41,13 @@ export function LoginPage() {
     <div className="min-h-screen flex flex-col">
       <button
         onClick={() => navigate('/')}
-        className="mx-[22px] mt-[8px] self-start font-mono text-[9px] tracking-[0.22em] uppercase flex items-center gap-[6px] py-[8px]"
+        className="mx-[22px] sm:mx-8 md:mx-auto md:max-w-md md:w-full mt-[8px] self-start font-mono text-[9px] tracking-[0.22em] uppercase flex items-center gap-[6px] py-[8px]"
         style={{ color: 'var(--color-cream-3)' }}
       >
         ← Voltar ao catálogo
       </button>
 
-      <div className="px-[22px] pt-[32px] flex-1">
+      <div className="px-[22px] sm:px-8 md:px-0 md:max-w-md md:mx-auto md:w-full pt-[32px] flex-1">
         <Wordmark className="h-10" />
 
         <div className="mt-[38px]">

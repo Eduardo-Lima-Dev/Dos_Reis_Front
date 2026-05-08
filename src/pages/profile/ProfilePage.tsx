@@ -24,7 +24,7 @@ export function ProfilePage() {
   return (
     <div className="pb-[40px]">
       <header
-        className="flex justify-between items-center px-[22px] pt-[10px] pb-[18px]"
+        className="flex justify-between items-center px-[22px] sm:px-8 md:px-12 pt-[10px] pb-[18px]"
         style={{ borderBottom: '1px solid var(--color-line-2)' }}
       >
         <Wordmark className="h-7" />
@@ -33,7 +33,7 @@ export function ProfilePage() {
         </div>
       </header>
 
-      <section className="pt-[36px] pb-0 text-center px-[22px]">
+      <section className="pt-[36px] pb-0 text-center px-[22px] sm:px-8 md:px-12">
         <div
           className="w-[100px] h-[100px] mx-auto rounded-full flex items-center justify-center text-[38px] font-semibold"
           style={{
@@ -63,7 +63,7 @@ export function ProfilePage() {
         </div>
       </section>
 
-      <section className="px-[22px] pt-[32px]">
+      <section className="px-[22px] sm:px-8 md:px-12 pt-[32px]">
         <div
           className="grid grid-cols-3"
           style={{ border: '1px solid var(--color-line)', background: 'var(--color-ink-2)' }}
@@ -74,7 +74,7 @@ export function ProfilePage() {
         </div>
       </section>
 
-      <section className="px-[22px] pt-[30px] flex flex-col gap-[8px]">
+      <section className="px-[22px] sm:px-8 md:px-12 pt-[30px] flex flex-col gap-[8px]">
         {PROFILE_ITEMS.map((item) => (
           <button
             key={item}
@@ -91,7 +91,7 @@ export function ProfilePage() {
         ))}
       </section>
 
-      <section className="px-[22px] pt-[30px]">
+      <section className="px-[22px] sm:px-8 md:px-12 pt-[30px]">
         <button
           onClick={() => { logout(); navigate('/'); }}
           className="w-full py-[14px] font-mono text-[10px] tracking-[0.22em] uppercase"

@@ -6,7 +6,7 @@ interface SectionHeaderProps {
 
 export function SectionHeader({ kicker, title, action }: SectionHeaderProps) {
   return (
-    <div className="flex justify-between items-end px-[22px] mb-[14px]">
+    <div className="flex justify-between items-end px-[22px] sm:px-8 md:px-12 mb-[14px]">
       <div>
         {kicker && (
           <div

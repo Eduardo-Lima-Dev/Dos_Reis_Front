@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useCallback, type ReactNode } from 'react';
+import { createContext, useContext, useState, useCallback, useEffect, type ReactNode } from 'react';
 import { decodeJwt, isTokenExpired } from '../lib/jwt';
 import type { JwtPayload } from '../types/api';
 
@@ -35,6 +35,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const logout = useCallback(() => {
     localStorage.removeItem(TOKEN_KEY);
     setToken(null);
+  }, []);
+
+  useEffect(() => {
+    const handler = () => setToken(null);
+    window.addEventListener('auth:unauthorized', handler);
+    return () => window.removeEventListener('auth:unauthorized', handler);
   }, []);
 
   return (

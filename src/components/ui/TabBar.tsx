@@ -47,8 +47,8 @@ export function TabBar() {
             className="flex flex-col items-center gap-1 py-[6px] transition-colors duration-150"
             style={{ color: active ? 'var(--color-gold)' : 'var(--color-cream-3)' }}
           >
-            <Icon size={20} strokeWidth={1.4} />
-            <span className="font-mono text-[9px] tracking-[0.14em] uppercase">{label}</span>
+            <Icon size={20} className="sm:w-6 sm:h-6" strokeWidth={1.4} />
+            <span className="font-mono text-[9px] sm:text-[10px] tracking-[0.14em] uppercase">{label}</span>
           </button>
         );
       })}

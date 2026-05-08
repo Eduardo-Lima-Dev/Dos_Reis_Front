@@ -24,7 +24,7 @@ export function TeamPage() {
   return (
     <div className="pb-[30px]">
       <header
-        className="flex justify-between items-center px-[22px] pt-[10px] pb-[18px]"
+        className="flex justify-between items-center px-[22px] sm:px-8 md:px-12 pt-[10px] pb-[18px]"
         style={{ borderBottom: '1px solid var(--color-line-2)' }}
       >
         <Wordmark className="h-7" />
@@ -33,7 +33,7 @@ export function TeamPage() {
         </div>
       </header>
 
-      <section className="px-[22px] pt-[32px] pb-[10px]">
+      <section className="px-[22px] sm:px-8 md:px-12 pt-[32px] pb-[10px]">
         <div className="font-mono text-[9px] tracking-[0.32em] uppercase mb-[10px]" style={{ color: 'var(--color-gold)' }}>
           Nossos profissionais
         </div>
@@ -54,7 +54,7 @@ export function TeamPage() {
       {/* Barbers */}
       <section className="pt-[28px]">
         <SectionHeader kicker={`${allBarbers.length} barbeiros`} title="Barbeiros" />
-        <div className="px-[22px] flex flex-col gap-[12px]">
+        <div className="px-[22px] sm:px-8 md:px-12 grid grid-cols-1 md:grid-cols-2 gap-[12px]">
           {loadingBarbers
             ? Array.from({ length: 3 }).map((_, i) => (
                 <div key={i} className="h-[72px]" style={{ background: 'var(--color-ink-2)', border: '1px solid var(--color-line-2)' }} />
@@ -69,7 +69,7 @@ export function TeamPage() {
       {isAuthenticated && (
         <section className="pt-[32px]">
           <SectionHeader kicker={`${uniqueReceptionists.length} recepcionistas`} title="Recepção" />
-          <div className="px-[22px] flex flex-col gap-[12px]">
+          <div className="px-[22px] sm:px-8 md:px-12 grid grid-cols-1 md:grid-cols-2 gap-[12px]">
             {loadingRecep
               ? Array.from({ length: 2 }).map((_, i) => (
                   <div key={i} className="h-[72px]" style={{ background: 'var(--color-ink-2)', border: '1px solid var(--color-line-2)' }} />
