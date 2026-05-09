@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import { Wordmark } from '../../components/ui/Wordmark';
 import { SectionHeader } from '../../components/ui/SectionHeader';
 import { useUsers, useReceptionists } from '../../hooks/queries/useUsers';
 import { useAuth } from '../../contexts/AuthContext';
+import { CreateReceptionistModal } from './CreateReceptionistModal';
 import type { User } from '../../types/api';
 
 function getInitials(name: string) {
@@ -20,6 +22,8 @@ export function TeamPage() {
   const uniqueReceptionists = allReceptionists.filter(
     (u, i, arr) => arr.findIndex((x) => x.id === u.id) === i
   );
+
+  const [isAddingReceptionist, setIsAddingReceptionist] = useState(false);
 
   return (
     <div className="pb-[30px]">
@@ -68,7 +72,19 @@ export function TeamPage() {
       {/* Receptionists — only visible when authenticated */}
       {isAuthenticated && (
         <section className="pt-[32px]">
-          <SectionHeader kicker={`${uniqueReceptionists.length} recepcionistas`} title="Recepção" />
+          <SectionHeader
+            kicker={`${uniqueReceptionists.length} recepcionistas`}
+            title="Recepção"
+            action={
+              <button
+                onClick={() => setIsAddingReceptionist(true)}
+                className="font-mono text-[10px] tracking-[0.18em] uppercase"
+                style={{ color: 'var(--color-gold)' }}
+              >
+                + Adicionar
+              </button>
+            }
+          />
           <div className="px-[22px] sm:px-8 md:px-12 grid grid-cols-1 md:grid-cols-2 gap-[12px]">
             {loadingRecep
               ? Array.from({ length: 2 }).map((_, i) => (
@@ -79,6 +95,10 @@ export function TeamPage() {
                 ))}
           </div>
         </section>
+      )}
+
+      {isAddingReceptionist && (
+        <CreateReceptionistModal onClose={() => setIsAddingReceptionist(false)} />
       )}
     </div>
   );

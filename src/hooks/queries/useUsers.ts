@@ -1,5 +1,5 @@
-import { useQuery } from '@tanstack/react-query';
-import { listUsers, listReceptionists, getUser } from '../../api/endpoints/users';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { listUsers, listReceptionists, getUser, createReceptionist } from '../../api/endpoints/users';
 
 export const usersKeys = {
   all: ['users'] as const,
@@ -20,5 +20,16 @@ export function useUser(id: string) {
     queryKey: usersKeys.detail(id),
     queryFn: () => getUser(id),
     enabled: !!id,
+  });
+}
+
+export function useCreateReceptionist() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: createReceptionist,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: usersKeys.receptionists });
+      queryClient.invalidateQueries({ queryKey: usersKeys.all });
+    },
   });
 }

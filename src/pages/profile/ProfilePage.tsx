@@ -7,10 +7,6 @@ import { ChevronRight } from 'lucide-react';
 
 const PROFILE_ITEMS = [
   'Editar perfil',
-  'Configurar horários',
-  'Notificações',
-  'Política de cancelamento',
-  'Suporte',
 ];
 
 export function ProfilePage() {

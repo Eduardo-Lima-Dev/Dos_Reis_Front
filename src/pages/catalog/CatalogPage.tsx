@@ -44,23 +44,9 @@ export function CatalogPage() {
 
   return (
     <div>
-      {/* Header */}
-      <header
-        className="flex justify-between items-center px-[22px] sm:px-8 md:px-12 pt-[10px] pb-[18px]"
-        style={{ borderBottom: '1px solid var(--color-line-2)' }}
-      >
-        <Wordmark className="h-8" />
-        <button
-          onClick={() => navigate('/login')}
-          className="font-mono text-[9px] tracking-[0.22em] uppercase px-[20px] pt-[10px] pb-[8px] rounded-full inline-flex items-center justify-center leading-none"
-          style={{ color: 'var(--color-gold)', border: '1px solid var(--color-line)' }}
-        >
-          Equipe →
-        </button>
-      </header>
-
       {/* Hero */}
-      <section className="px-[22px] sm:px-8 md:px-12 pt-[32px] pb-[24px] relative flex flex-col items-center text-center">
+      <section className="px-[22px] sm:px-8 md:px-12 pt-[32px] pb-[24px] relative flex justify-between items-center gap-[24px]">
+        <div className="flex-1">
         <div className="font-mono text-[9px] tracking-[0.32em] uppercase mb-[14px]" style={{ color: 'var(--color-gold)' }}>
           Quixadá – CE
         </div>
@@ -78,27 +64,24 @@ export function CatalogPage() {
           <span style={{ color: 'var(--color-gold)' }}>de um rei</span><br />
           começa aqui.
         </h1>
-        <p className="mt-[18px] text-[14px] leading-[1.55] max-w-[32ch] mx-auto" style={{ color: 'var(--color-cream-2)' }}>
+        <p className="mt-[18px] text-[14px] leading-[1.55] max-w-[32ch]" style={{ color: 'var(--color-cream-2)' }}>
           Tradição em navalha desde 1998. Catálogo de cortes, preços e tempos — escolha o seu e fale conosco.
         </p>
 
-        <div className="flex justify-center gap-[10px] mt-[22px] w-full max-w-[400px]">
+        <div className="flex gap-[10px] mt-[22px]">
           <a
             href={`https://wa.me/${SHOP_WHATSAPP}?text=Olá! Vim pelo catálogo da Barbearia dos Reis.`}
             target="_blank" rel="noreferrer"
-            className="flex-1 flex items-center justify-center gap-2 pt-[15px] pb-[13px] px-[18px] font-mono text-[11px] tracking-[0.18em] uppercase font-semibold text-center transition-opacity hover:opacity-85 leading-none"
+            className="flex items-center justify-center gap-2 py-[14px] px-[32px] font-mono text-[11px] tracking-[0.18em] uppercase font-semibold text-center transition-opacity hover:opacity-85"
             style={{ background: 'var(--color-gold)', color: 'var(--color-ink)', borderRadius: 'var(--radius)' }}
           >
             <WhatsAppIcon size={14} />
             Agendar
           </a>
-          <button
-            onClick={() => document.getElementById('cuts-grid')?.scrollIntoView({ behavior: 'smooth' })}
-            className="px-[24px] pt-[15px] pb-[13px] font-mono text-[11px] tracking-[0.12em] uppercase transition-colors hover:border-[var(--color-gold)] hover:text-[var(--color-gold)] inline-flex items-center justify-center leading-none"
-            style={{ border: '1px solid var(--color-line)', color: 'var(--color-cream)', borderRadius: 'var(--radius)' }}
-          >
-            Ver Cortes
-          </button>
+        </div>
+        </div>
+        <div className="shrink-0 mt-4 sm:mt-0">
+          <Wordmark className="h-16 sm:h-24 md:h-32" />
         </div>
       </section>
 
@@ -170,7 +153,7 @@ export function CatalogPage() {
               style={{ color: 'var(--color-gold)' }}
             >
               <SlidersHorizontal size={12} />
-              {showFilters ? 'Fechar' : 'Filtrar'}
+              <span className="relative top-[1px]">{showFilters ? 'Fechar' : 'Filtrar'}</span>
             </button>
           }
         />
@@ -228,11 +211,11 @@ export function CatalogPage() {
         >
           {loadingCuts
             ? Array.from({ length: 6 }).map((_, i) => (
-                <div key={i} className="aspect-[4/5]" style={{ background: 'var(--color-ink-2)' }} />
-              ))
+              <div key={i} className="aspect-[4/5]" style={{ background: 'var(--color-ink-2)' }} />
+            ))
             : filteredCuts.map((cut) => (
-                <CutCard key={cut.id} cut={cut} onClick={() => setOpenCut(cut)} />
-              ))}
+              <CutCard key={cut.id} cut={cut} onClick={() => setOpenCut(cut)} />
+            ))}
           {!loadingCuts && filteredCuts.length === 0 && (
             <div
               className="col-span-2 py-[60px] text-center text-[18px]"
