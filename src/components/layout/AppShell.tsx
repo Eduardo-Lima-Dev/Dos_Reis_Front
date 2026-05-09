@@ -8,11 +8,11 @@ export function AppShell() {
   const showTabBar = !NO_TABBAR.some((p) => pathname.startsWith(p));
 
   return (
-    <>
-      <div style={{ paddingBottom: 20 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+      <div style={{ flex: 1, paddingBottom: 20 }}>
         <Outlet />
       </div>
       {showTabBar && <TabBar />}
-    </>
+    </div>
   );
 }

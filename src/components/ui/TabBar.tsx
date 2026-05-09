@@ -26,8 +26,6 @@ export function TabBar() {
   return (
     <nav
       style={{
-        position: 'sticky',
-        bottom: 0,
         background: 'rgba(14,13,12,0.97)',
         backdropFilter: 'blur(20px)',
         borderTop: '1px solid var(--color-line-2)',
