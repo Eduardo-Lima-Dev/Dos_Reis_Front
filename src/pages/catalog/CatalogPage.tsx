@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { SlidersHorizontal } from 'lucide-react';
 import { Wordmark } from '../../components/ui/Wordmark';
 import { TagPill } from '../../components/ui/TagPill';
@@ -15,7 +14,6 @@ import { CutModal } from './CutModal';
 const SHOP_WHATSAPP = '558893308530';
 
 export function CatalogPage() {
-  const navigate = useNavigate();
   const { data: haircuts = [], isLoading: loadingCuts } = useHaircuts();
   const { data: tags = [], isLoading: loadingTags } = useTags();
 
