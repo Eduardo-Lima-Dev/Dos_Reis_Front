@@ -3,17 +3,20 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { toast } from 'sonner';
 import { Wordmark } from '../../components/ui/Wordmark';
 import { Field } from '../../components/ui/Field';
 import { TagPill } from '../../components/ui/TagPill';
-import { useTags } from '../../hooks/queries/useTags';
+import { useTags, tagsKeys } from '../../hooks/queries/useTags';
 import { useHaircut } from '../../hooks/queries/useHaircuts';
 import {
   useCreateHaircut,
   useUpdateHaircut,
   useDeleteHaircut,
 } from '../../hooks/mutations/useHaircutMutations';
-import { ImagePlus, Trash2 } from 'lucide-react';
+import { createTag } from '../../api/endpoints/tags';
+import { ImagePlus, Plus, Trash2, X } from 'lucide-react';
 
 const schema = z.object({
   name: z.string().min(2, 'Nome obrigatório'),
@@ -40,6 +43,21 @@ export function CutFormPage() {
   const createMutation = useCreateHaircut();
   const updateMutation = useUpdateHaircut();
   const deleteMutation = useDeleteHaircut();
+
+  const [showNewTag, setShowNewTag] = useState(false);
+  const [newTagName, setNewTagName] = useState('');
+  const queryClient = useQueryClient();
+  const createTagMutation = useMutation({
+    mutationFn: createTag,
+    onSuccess: (tag) => {
+      queryClient.invalidateQueries({ queryKey: tagsKeys.all });
+      setSelectedTags((prev) => [...prev, tag.id]);
+      setNewTagName('');
+      setShowNewTag(false);
+      toast.success(`Tag "${tag.name}" criada.`);
+    },
+    onError: () => toast.error('Não foi possível criar a tag.'),
+  });
 
   const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
     resolver: zodResolver(schema),
@@ -137,25 +155,74 @@ export function CutFormPage() {
         <Field label="Descrição" registration={register('description')} error={errors.description?.message} />
 
         {/* Tags */}
-        {tags.length > 0 && (
-          <div>
-            <div className="font-mono text-[9px] tracking-[0.22em] uppercase mb-[10px]" style={{ color: 'var(--color-cream-3)' }}>
+        <div>
+          <div className="flex items-center justify-between mb-[10px]">
+            <div className="font-mono text-[9px] tracking-[0.22em] uppercase" style={{ color: 'var(--color-cream-3)' }}>
               Tags
             </div>
-            <div className="flex gap-2 flex-wrap">
-              {tags.map((t) => (
-                <TagPill
-                  key={t.id}
-                  size="sm"
-                  active={selectedTags.includes(t.id)}
-                  onClick={() => toggleTag(t.id)}
-                >
-                  {t.name}
-                </TagPill>
-              ))}
-            </div>
+            <button
+              type="button"
+              onClick={() => { setShowNewTag((v) => !v); setNewTagName(''); }}
+              className="flex items-center gap-[4px] font-mono text-[9px] tracking-[0.18em] uppercase"
+              style={{ color: showNewTag ? 'var(--color-cream-3)' : 'var(--color-gold)' }}
+            >
+              {showNewTag ? <X size={11} /> : <Plus size={11} />}
+              {showNewTag ? 'Cancelar' : 'Nova tag'}
+            </button>
           </div>
-        )}
+
+          {showNewTag && (
+            <div className="flex gap-2 mb-[10px]">
+              <input
+                autoFocus
+                value={newTagName}
+                onChange={(e) => setNewTagName(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') { e.preventDefault(); if (newTagName.trim()) createTagMutation.mutate({ name: newTagName.trim() }); }
+                  if (e.key === 'Escape') setShowNewTag(false);
+                }}
+                placeholder="Nome da tag"
+                style={{
+                  flex: 1, background: 'transparent', border: 'none',
+                  borderBottom: '1px solid var(--color-gold)', outline: 'none',
+                  color: 'var(--color-cream)', fontFamily: 'var(--font-body)',
+                  fontSize: 14, padding: '6px 0',
+                }}
+              />
+              <button
+                type="button"
+                disabled={!newTagName.trim() || createTagMutation.isPending}
+                onClick={() => { if (newTagName.trim()) createTagMutation.mutate({ name: newTagName.trim() }); }}
+                className="font-mono text-[9px] tracking-[0.18em] uppercase px-[12px] py-[6px]"
+                style={{
+                  background: newTagName.trim() ? 'var(--color-gold)' : 'var(--color-ink-3)',
+                  color: newTagName.trim() ? 'var(--color-ink)' : 'var(--color-cream-3)',
+                  transition: 'all 0.15s',
+                }}
+              >
+                {createTagMutation.isPending ? '...' : 'Criar'}
+              </button>
+            </div>
+          )}
+
+          <div className="flex gap-2 flex-wrap">
+            {tags.map((t) => (
+              <TagPill
+                key={t.id}
+                size="sm"
+                active={selectedTags.includes(t.id)}
+                onClick={() => toggleTag(t.id)}
+              >
+                {t.name}
+              </TagPill>
+            ))}
+            {tags.length === 0 && !showNewTag && (
+              <span className="font-mono text-[10px]" style={{ color: 'var(--color-cream-3)' }}>
+                Nenhuma tag. Crie a primeira.
+              </span>
+            )}
+          </div>
+        </div>
 
         {/* Images — only on create */}
         {!isEdit && (

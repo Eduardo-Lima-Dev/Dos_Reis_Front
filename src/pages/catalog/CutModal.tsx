@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { CutPlaceholder } from '../../components/ui/CutPlaceholder';
 import { TagPill } from '../../components/ui/TagPill';
 import { WhatsAppIcon } from '../../components/ui/WhatsAppIcon';
@@ -26,9 +26,8 @@ export function CutModal({ cut, onClose }: CutModalProps) {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="w-full max-h-[92vh] overflow-y-auto animate-slide-up relative"
+        className="w-full max-w-[440px] sm:max-w-2xl md:max-w-3xl max-h-[92vh] overflow-y-auto animate-slide-up relative"
         style={{
-          maxWidth: 440,
           background: 'var(--color-ink)',
           borderTop: '1px solid var(--color-gold)',
         }}
@@ -50,7 +49,7 @@ export function CutModal({ cut, onClose }: CutModalProps) {
           ×
         </button>
 
-        <CutPlaceholder cut={cut} aspect="4/3" label="FOTO · DETALHE" />
+        <ImageCarousel cut={cut} />
 
         <div className="p-[22px_22px_32px]">
           {/* Tags */}
@@ -109,6 +108,100 @@ export function CutModal({ cut, onClose }: CutModalProps) {
           </button>
         </div>
       </div>
+    </div>
+  );
+}
+
+function ImageCarousel({ cut }: { cut: Haircut }) {
+  const images = cut.images ?? [];
+  const [idx, setIdx] = useState(0);
+  const touchStartX = useRef<number | null>(null);
+
+  if (images.length === 0) {
+    return <CutPlaceholder cut={cut} aspect="4/3" label="FOTO · DETALHE" />;
+  }
+
+  const prev = () => setIdx((i) => (i - 1 + images.length) % images.length);
+  const next = () => setIdx((i) => (i + 1) % images.length);
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const onTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const dx = e.changedTouches[0].clientX - touchStartX.current;
+    if (Math.abs(dx) > 40) dx < 0 ? next() : prev();
+    touchStartX.current = null;
+  };
+
+  return (
+    <div style={{ position: 'relative', width: '100%', aspectRatio: '4/3', overflow: 'hidden', background: 'var(--color-ink-2)' }}>
+      <img
+        key={idx}
+        src={images[idx]}
+        alt={`${cut.name} ${idx + 1}`}
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
+        className="animate-fade-in"
+        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+      />
+
+      {images.length > 1 && (
+        <>
+          <button
+            onClick={prev}
+            aria-label="Anterior"
+            style={{
+              position: 'absolute', left: 10, top: '50%', transform: 'translateY(-50%)',
+              width: 36, height: 36, borderRadius: '50%',
+              background: 'rgba(10,10,10,0.6)', border: '1px solid var(--color-line)',
+              color: 'var(--color-cream)', fontSize: 20, display: 'flex',
+              alignItems: 'center', justifyContent: 'center', cursor: 'pointer',
+            }}
+          >‹</button>
+
+          <button
+            onClick={next}
+            aria-label="Próxima"
+            style={{
+              position: 'absolute', right: 10, top: '50%', transform: 'translateY(-50%)',
+              width: 36, height: 36, borderRadius: '50%',
+              background: 'rgba(10,10,10,0.6)', border: '1px solid var(--color-line)',
+              color: 'var(--color-cream)', fontSize: 20, display: 'flex',
+              alignItems: 'center', justifyContent: 'center', cursor: 'pointer',
+            }}
+          >›</button>
+
+          <div style={{
+            position: 'absolute', bottom: 12, left: 0, right: 0,
+            display: 'flex', justifyContent: 'center', gap: 6,
+          }}>
+            {images.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setIdx(i)}
+                aria-label={`Imagem ${i + 1}`}
+                style={{
+                  width: i === idx ? 18 : 6, height: 6, borderRadius: 3,
+                  background: i === idx ? 'var(--color-gold)' : 'rgba(245,239,225,0.35)',
+                  border: 'none', padding: 0, cursor: 'pointer',
+                  transition: 'width 0.2s ease, background 0.2s ease',
+                }}
+              />
+            ))}
+          </div>
+
+          <div style={{
+            position: 'absolute', top: 12, right: 12,
+            fontFamily: 'var(--font-mono)', fontSize: 9,
+            letterSpacing: '0.18em', color: 'var(--color-cream)',
+            background: 'rgba(10,10,10,0.6)', padding: '3px 8px',
+          }}>
+            {idx + 1}/{images.length}
+          </div>
+        </>
+      )}
     </div>
   );
 }
