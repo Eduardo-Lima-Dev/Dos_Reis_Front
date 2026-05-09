@@ -7,7 +7,7 @@ interface TagPillProps {
 }
 
 export function TagPill({ children, active, onClick, size = 'md', type = 'button' }: TagPillProps) {
-  const padding = size === 'sm' ? 'px-[14px] py-[6px]' : 'px-[20px] py-[9px]';
+  const padding = size === 'sm' ? 'px-[14px] pt-[7px] pb-[5px]' : 'px-[20px] pt-[10px] pb-[8px]';
   const fontSize = size === 'sm' ? 'text-[10px]' : 'text-[11px]';
   return (
     <button
@@ -19,7 +19,7 @@ export function TagPill({ children, active, onClick, size = 'md', type = 'button
         color: active ? 'var(--color-ink)' : 'var(--color-cream-2)',
         transition: 'all 0.18s ease',
       }}
-      className={`${padding} ${fontSize} font-mono tracking-[0.10em] uppercase rounded-full whitespace-nowrap font-medium`}
+      className={`${padding} ${fontSize} font-mono tracking-[0.10em] uppercase rounded-full whitespace-nowrap font-medium inline-flex items-center justify-center leading-none`}
     >
       {children}
     </button>
