@@ -88,15 +88,8 @@ export function LoginPage() {
           <button
             type="submit"
             disabled={mutation.isPending}
-            className="mt-[16px] w-full font-mono tracking-[0.28em] uppercase font-bold transition-all duration-[180ms]"
-            style={{
-              padding: '20px 24px',
-              fontSize: 13,
-              background: mutation.isPending ? 'var(--color-ink-3)' : 'var(--color-gold)',
-              color: mutation.isPending ? 'var(--color-cream-3)' : 'var(--color-ink)',
-              cursor: mutation.isPending ? 'wait' : 'pointer',
-              letterSpacing: '0.28em',
-            }}
+            className="mt-[16px] btn-primary"
+            style={{ fontSize: 13, letterSpacing: '0.28em' }}
           >
             {mutation.isPending ? 'Entrando...' : 'Entrar →'}
           </button>

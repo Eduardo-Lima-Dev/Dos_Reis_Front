@@ -28,11 +28,12 @@ export function TabBar() {
       style={{
         position: 'sticky',
         bottom: 0,
-        background: 'rgba(10,10,10,0.95)',
-        backdropFilter: 'blur(16px)',
+        background: 'rgba(14,13,12,0.97)',
+        backdropFilter: 'blur(20px)',
         borderTop: '1px solid var(--color-line-2)',
-        paddingBottom: 'max(10px, env(safe-area-inset-bottom))',
-        paddingTop: 10,
+        borderRadius: '20px 20px 0 0',
+        paddingBottom: 'max(12px, env(safe-area-inset-bottom))',
+        paddingTop: 8,
         zIndex: 50,
         display: 'grid',
         gridTemplateColumns: `repeat(${tabs.length}, 1fr)`,
@@ -44,10 +45,37 @@ export function TabBar() {
           <button
             key={id}
             onClick={() => navigate(path)}
-            className="flex flex-col items-center gap-1 py-[6px] transition-colors duration-150"
+            className="flex flex-col items-center gap-[5px] py-[6px] transition-all duration-150 relative"
             style={{ color: active ? 'var(--color-gold)' : 'var(--color-cream-3)' }}
           >
-            <Icon size={20} className="sm:w-6 sm:h-6" strokeWidth={1.4} />
+            {active && (
+              <span
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  width: 28,
+                  height: 2,
+                  background: 'var(--color-gold)',
+                  borderRadius: '0 0 2px 2px',
+                }}
+              />
+            )}
+            <span
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: 36,
+                height: 30,
+                borderRadius: 8,
+                background: active ? 'rgba(201,169,97,0.12)' : 'transparent',
+                transition: 'background 0.15s',
+              }}
+            >
+              <Icon size={18} strokeWidth={active ? 2 : 1.4} />
+            </span>
             <span className="font-mono text-[9px] sm:text-[10px] tracking-[0.14em] uppercase">{label}</span>
           </button>
         );

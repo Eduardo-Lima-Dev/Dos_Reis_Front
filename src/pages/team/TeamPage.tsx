@@ -88,8 +88,8 @@ function TeamMemberCard({ user, accent }: { user: User; accent: string }) {
   const initials = getInitials(user.name);
   return (
     <div
-      className="flex items-center gap-[14px] p-[14px_16px]"
-      style={{ background: 'var(--color-ink-2)', border: '1px solid var(--color-line-2)' }}
+      className="flex items-center gap-[14px] p-[14px_16px] card"
+      style={{}}
     >
       <div
         className="w-[48px] h-[48px] rounded-full shrink-0 flex items-center justify-center text-[16px] font-semibold"

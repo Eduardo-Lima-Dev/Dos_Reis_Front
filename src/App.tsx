@@ -15,7 +15,7 @@ export default function App() {
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <div
-          className="w-full max-w-[440px] sm:max-w-2xl md:max-w-3xl mx-auto min-h-screen relative"
+          className="w-full max-w-[440px] sm:max-w-2xl md:max-w-3xl mx-auto min-h-screen relative sm:rounded-[24px] sm:my-0 overflow-hidden"
           style={{
             background: 'var(--color-ink)',
             boxShadow: '0 0 80px rgba(0,0,0,0.6)',

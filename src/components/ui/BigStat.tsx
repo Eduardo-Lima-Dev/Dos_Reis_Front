@@ -26,7 +26,7 @@ export function BigStat({ label, value, divider, small }: BigStatProps) {
           fontFamily: 'var(--font-display)',
           fontStyle: 'italic',
           fontWeight: 600,
-          fontSize: small ? 22 : 32,
+          fontSize: small ? 22 : 30,
           color: 'var(--color-cream)',
           letterSpacing: '-0.01em',
           lineHeight: 1,

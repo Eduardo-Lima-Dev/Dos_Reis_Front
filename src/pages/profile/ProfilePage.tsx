@@ -66,7 +66,7 @@ export function ProfilePage() {
       <section className="px-[22px] sm:px-8 md:px-12 pt-[32px]">
         <div
           className="grid grid-cols-3"
-          style={{ border: '1px solid var(--color-line)', background: 'var(--color-ink-2)' }}
+          style={{ border: '1px solid var(--color-line)', background: 'var(--color-ink-2)', borderRadius: 'var(--radius)', overflow: 'hidden' }}
         >
           <BigStat label="Cortes" value={cuts.length} />
           <BigStat label="Função" value="Barb." small divider />
@@ -78,12 +78,8 @@ export function ProfilePage() {
         {PROFILE_ITEMS.map((item) => (
           <button
             key={item}
-            className="flex justify-between items-center px-[18px] py-[16px] text-[14px] text-left"
-            style={{
-              background: 'var(--color-ink-2)',
-              border: '1px solid var(--color-line-2)',
-              color: 'var(--color-cream)',
-            }}
+            className="flex justify-between items-center px-[18px] py-[16px] text-[14px] text-left card card-hover w-full"
+            style={{ color: 'var(--color-cream)' }}
           >
             <span>{item}</span>
             <ChevronRight size={16} style={{ color: 'var(--color-cream-3)' }} />
@@ -94,8 +90,7 @@ export function ProfilePage() {
       <section className="px-[22px] sm:px-8 md:px-12 pt-[30px]">
         <button
           onClick={() => { logout(); navigate('/'); }}
-          className="w-full py-[14px] font-mono text-[10px] tracking-[0.22em] uppercase"
-          style={{ border: '1px solid rgba(220,80,80,0.4)', color: 'rgba(220,80,80,0.85)' }}
+          className="btn-danger"
         >
           Sair da conta
         </button>

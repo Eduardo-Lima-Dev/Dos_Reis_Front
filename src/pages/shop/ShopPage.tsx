@@ -56,7 +56,7 @@ export function ShopPage() {
       <section className="px-[22px] sm:px-8 md:px-12 pt-[26px]">
         <div
           className="p-[20px_18px]"
-          style={{ background: 'var(--color-ink-2)', border: '1px solid var(--color-line)' }}
+          style={{ background: 'var(--color-ink-2)', border: '1px solid var(--color-line)', borderRadius: 'var(--radius)' }}
         >
           {[
             { label: 'Endereço', value: SHOP.address },
@@ -90,8 +90,8 @@ export function ShopPage() {
         <a
           href={`https://instagram.com/${SHOP.instagram.replace('@', '')}`}
           target="_blank" rel="noreferrer"
-          className="flex items-center justify-center gap-[10px] py-[16px] font-mono text-[11px] tracking-[0.22em] uppercase"
-          style={{ border: '1px solid var(--color-gold)', color: 'var(--color-gold)' }}
+          className="flex items-center justify-center gap-[10px] py-[16px] font-mono text-[11px] tracking-[0.22em] uppercase flex-1 transition-opacity hover:opacity-80"
+          style={{ border: '1px solid var(--color-gold)', color: 'var(--color-gold)', borderRadius: 'var(--radius)' }}
         >
           <InstagramIcon size={14} />
           Seguir no Instagram
@@ -99,8 +99,8 @@ export function ShopPage() {
         <a
           href={`https://wa.me/${SHOP.whatsapp}`}
           target="_blank" rel="noreferrer"
-          className="flex items-center justify-center gap-[10px] py-[16px] font-mono text-[11px] tracking-[0.22em] uppercase font-semibold"
-          style={{ background: 'var(--color-gold)', color: 'var(--color-ink)' }}
+          className="flex items-center justify-center gap-[10px] py-[16px] font-mono text-[11px] tracking-[0.22em] uppercase font-semibold flex-1 transition-opacity hover:opacity-85"
+          style={{ background: 'var(--color-gold)', color: 'var(--color-ink)', borderRadius: 'var(--radius)' }}
         >
           <WhatsAppIcon size={14} />
           Falar conosco

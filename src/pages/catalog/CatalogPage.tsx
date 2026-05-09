@@ -52,7 +52,7 @@ export function CatalogPage() {
         <Wordmark className="h-8" />
         <button
           onClick={() => navigate('/login')}
-          className="font-mono text-[9px] tracking-[0.22em] uppercase px-[12px] py-[8px] rounded-full"
+          className="font-mono text-[9px] tracking-[0.22em] uppercase px-[20px] py-[9px] rounded-full"
           style={{ color: 'var(--color-gold)', border: '1px solid var(--color-line)' }}
         >
           Equipe →
@@ -86,16 +86,16 @@ export function CatalogPage() {
           <a
             href={`https://wa.me/${SHOP_WHATSAPP}?text=Olá! Vim pelo catálogo da Barbearia dos Reis.`}
             target="_blank" rel="noreferrer"
-            className="flex-1 flex items-center justify-center gap-2 py-[14px] px-[18px] font-mono text-[11px] tracking-[0.18em] uppercase font-semibold text-center"
-            style={{ background: 'var(--color-gold)', color: 'var(--color-ink)' }}
+            className="flex-1 flex items-center justify-center gap-2 py-[14px] px-[18px] font-mono text-[11px] tracking-[0.18em] uppercase font-semibold text-center transition-opacity hover:opacity-85"
+            style={{ background: 'var(--color-gold)', color: 'var(--color-ink)', borderRadius: 'var(--radius)' }}
           >
             <WhatsAppIcon size={14} />
             Agendar
           </a>
           <button
             onClick={() => document.getElementById('cuts-grid')?.scrollIntoView({ behavior: 'smooth' })}
-            className="px-[18px] py-[14px] font-mono text-[11px] tracking-[0.18em] uppercase"
-            style={{ border: '1px solid var(--color-line)', color: 'var(--color-cream)' }}
+            className="px-[24px] py-[14px] font-mono text-[11px] tracking-[0.12em] uppercase transition-colors hover:border-[var(--color-gold)] hover:text-[var(--color-gold)]"
+            style={{ border: '1px solid var(--color-line)', color: 'var(--color-cream)', borderRadius: 'var(--radius)' }}
           >
             Ver Cortes
           </button>
@@ -124,6 +124,8 @@ export function CatalogPage() {
                   scrollSnapAlign: 'start',
                   background: 'var(--color-ink-2)',
                   border: '1px solid var(--color-line)',
+                  borderRadius: 'var(--radius)',
+                  overflow: 'hidden',
                 }}
               >
                 <CutPlaceholder cut={cut} aspect="4/3" />
@@ -192,7 +194,7 @@ export function CatalogPage() {
         {showFilters && (
           <div
             className="mx-[22px] sm:mx-8 md:mx-12 mt-[16px] p-[20px]"
-            style={{ border: '1px solid var(--color-line)', background: 'var(--color-ink-2)' }}
+            style={{ border: '1px solid var(--color-line)', background: 'var(--color-ink-2)', borderRadius: 'var(--radius)' }}
           >
             <div className="font-mono text-[9px] tracking-[0.22em] uppercase mb-[8px]" style={{ color: 'var(--color-gold)' }}>
               Preço máximo
@@ -221,8 +223,8 @@ export function CatalogPage() {
 
         {/* Grid */}
         <div
-          className="grid grid-cols-2 md:grid-cols-3 gap-px mt-[18px] mx-[22px] sm:mx-8 md:mx-12"
-          style={{ background: 'var(--color-line-2)', border: '1px solid var(--color-line-2)' }}
+          className="grid grid-cols-2 md:grid-cols-3 gap-[10px] mt-[18px] mx-[22px] sm:mx-8 md:mx-12"
+          style={{}}
         >
           {loadingCuts
             ? Array.from({ length: 6 }).map((_, i) => (
@@ -259,8 +261,8 @@ function CutCard({ cut, onClick }: { cut: Haircut; onClick: () => void }) {
   return (
     <button
       onClick={onClick}
-      className="text-left relative p-0"
-      style={{ background: 'var(--color-ink)' }}
+      className="text-left relative p-0 card card-hover"
+      style={{}}
     >
       <CutPlaceholder cut={cut} aspect="4/5" />
       <div className="p-[12px_12px_16px]">
@@ -336,8 +338,8 @@ function ShopFooter() {
       <a
         href={`https://wa.me/${SHOP_WHATSAPP}`}
         target="_blank" rel="noreferrer"
-        className="mt-[22px] flex items-center justify-center gap-[10px] py-[14px] font-mono text-[11px] tracking-[0.2em] uppercase"
-        style={{ border: '1px solid var(--color-gold)', color: 'var(--color-gold)' }}
+        className="mt-[22px] flex items-center justify-center gap-[10px] py-[14px] font-mono text-[11px] tracking-[0.2em] uppercase transition-opacity hover:opacity-80"
+        style={{ border: '1px solid var(--color-gold)', color: 'var(--color-gold)', borderRadius: 'var(--radius)' }}
       >
         <WhatsAppIcon size={14} />
         Falar no WhatsApp

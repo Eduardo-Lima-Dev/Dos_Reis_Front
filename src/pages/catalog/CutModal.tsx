@@ -30,6 +30,7 @@ export function CutModal({ cut, onClose }: CutModalProps) {
         style={{
           background: 'var(--color-ink)',
           borderTop: '1px solid var(--color-gold)',
+          borderRadius: 'var(--radius-xl) var(--radius-xl) 0 0',
         }}
       >
         {/* Drag handle */}
@@ -92,8 +93,8 @@ export function CutModal({ cut, onClose }: CutModalProps) {
           <a
             href={`https://wa.me/${SHOP_WHATSAPP}?text=${encodeURIComponent(`Olá! Quero agendar o corte "${cut.name}" (${fmtMoney(cut.price)}).`)}`}
             target="_blank" rel="noreferrer"
-            className="mt-[24px] flex items-center justify-center gap-[10px] py-[16px] font-mono text-[11px] tracking-[0.22em] uppercase font-semibold"
-            style={{ background: 'var(--color-gold)', color: 'var(--color-ink)' }}
+            className="mt-[24px] btn-primary"
+            style={{ letterSpacing: '0.22em' }}
           >
             <WhatsAppIcon size={14} />
             Agendar pelo WhatsApp
@@ -101,8 +102,7 @@ export function CutModal({ cut, onClose }: CutModalProps) {
 
           <button
             onClick={onClose}
-            className="mt-[10px] w-full py-[14px] font-mono text-[10px] tracking-[0.22em] uppercase"
-            style={{ border: '1px solid var(--color-line)', color: 'var(--color-cream-2)' }}
+            className="mt-[10px] btn-outline"
           >
             Voltar ao catálogo
           </button>

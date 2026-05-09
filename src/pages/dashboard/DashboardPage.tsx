@@ -31,7 +31,7 @@ export function DashboardPage() {
         <Wordmark className="h-7" />
         <button
           onClick={logout}
-          className="font-mono text-[9px] tracking-[0.22em] uppercase px-[10px] py-[6px] rounded-full"
+          className="font-mono text-[9px] tracking-[0.14em] uppercase px-[16px] py-[7px] rounded-full"
           style={{ color: 'var(--color-cream-3)', border: '1px solid var(--color-line-2)' }}
         >
           Sair
@@ -64,7 +64,7 @@ export function DashboardPage() {
       <section className="px-[22px] sm:px-8 md:px-12">
         <div
           className="grid grid-cols-3"
-          style={{ border: '1px solid var(--color-line)', background: 'var(--color-ink-2)' }}
+          style={{ border: '1px solid var(--color-line)', background: 'var(--color-ink-2)', borderRadius: 'var(--radius)', overflow: 'hidden' }}
         >
           <BigStat label="Cortes" value={allCuts.length} />
           <BigStat label="A partir de" value={minPrice} small divider />
@@ -80,8 +80,8 @@ export function DashboardPage() {
           action={
             <button
               onClick={() => navigate('/admin/cortes/novo')}
-              className="font-mono text-[10px] tracking-[0.22em] uppercase px-[12px] py-[8px] font-semibold"
-              style={{ background: 'var(--color-gold)', color: 'var(--color-ink)' }}
+              className="font-mono text-[10px] tracking-[0.22em] uppercase px-[12px] py-[8px] font-semibold transition-opacity hover:opacity-85"
+              style={{ background: 'var(--color-gold)', color: 'var(--color-ink)', borderRadius: 'var(--radius-sm)' }}
             >
               + Novo
             </button>
@@ -129,7 +129,7 @@ export function DashboardPage() {
       <section className="px-[22px] sm:px-8 md:px-12 pt-[32px] pb-[20px]">
         <div
           className="p-[18px] flex gap-[14px] items-start"
-          style={{ background: 'var(--color-ink-2)', border: '1px solid var(--color-line-2)' }}
+          style={{ background: 'var(--color-ink-2)', border: '1px solid var(--color-line-2)', borderRadius: 'var(--radius)' }}
         >
           <div
             className="w-[28px] h-[28px] shrink-0 rounded-full flex items-center justify-center text-[14px]"
@@ -160,13 +160,10 @@ function DashboardCutRow({ cut, onClick }: { cut: Haircut; onClick: () => void }
   return (
     <button
       onClick={onClick}
-      className="flex gap-[14px] p-[12px] text-left items-stretch"
-      style={{
-        background: 'var(--color-ink-2)',
-        border: '1px solid var(--color-line-2)',
-      }}
+      className="flex gap-[14px] p-[12px] text-left items-stretch card card-hover w-full"
+      style={{}}
     >
-      <div className="w-[80px] shrink-0">
+      <div className="w-[80px] shrink-0" style={{ borderRadius: 'var(--radius-sm)', overflow: 'hidden' }}>
         <CutPlaceholder cut={cut} aspect="1/1" showLabel={false} />
       </div>
       <div className="flex-1 flex flex-col justify-between min-w-0">

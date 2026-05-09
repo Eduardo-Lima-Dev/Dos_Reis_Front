@@ -198,6 +198,7 @@ export function CutFormPage() {
                   background: newTagName.trim() ? 'var(--color-gold)' : 'var(--color-ink-3)',
                   color: newTagName.trim() ? 'var(--color-ink)' : 'var(--color-cream-3)',
                   transition: 'all 0.15s',
+                  borderRadius: 'var(--radius-sm)',
                 }}
               >
                 {createTagMutation.isPending ? '...' : 'Criar'}
@@ -243,7 +244,7 @@ export function CutFormPage() {
               type="button"
               onClick={() => fileInputRef.current?.click()}
               className="flex items-center gap-2 px-[14px] py-[10px] font-mono text-[10px] tracking-[0.18em] uppercase"
-              style={{ border: '1px solid var(--color-line)', color: 'var(--color-cream-2)' }}
+              style={{ border: '1px solid var(--color-line)', color: 'var(--color-cream-2)', borderRadius: 'var(--radius-sm)' }}
             >
               <ImagePlus size={14} />
               {imageFiles.length > 0 ? `${imageFiles.length} foto(s) selecionada(s)` : 'Adicionar fotos'}
@@ -264,11 +265,7 @@ export function CutFormPage() {
           <button
             type="submit"
             disabled={isPending}
-            className="py-[16px] font-mono text-[11px] tracking-[0.22em] uppercase font-semibold transition-all"
-            style={{
-              background: isPending ? 'var(--color-ink-3)' : 'var(--color-gold)',
-              color: isPending ? 'var(--color-cream-3)' : 'var(--color-ink)',
-            }}
+            className="btn-primary"
           >
             {isPending ? 'Salvando...' : isEdit ? 'Salvar alterações' : 'Criar corte'}
           </button>
@@ -278,8 +275,7 @@ export function CutFormPage() {
               type="button"
               onClick={handleDelete}
               disabled={deleteMutation.isPending}
-              className="py-[14px] flex items-center justify-center gap-2 font-mono text-[10px] tracking-[0.22em] uppercase"
-              style={{ border: '1px solid rgba(220,80,80,0.4)', color: 'rgba(220,80,80,0.85)' }}
+              className="btn-danger"
             >
               <Trash2 size={13} />
               Remover corte
